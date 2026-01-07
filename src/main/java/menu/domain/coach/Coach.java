@@ -15,9 +15,10 @@ public class Coach {
     private Queue<String> weeklyMenus;
     private HashMap<String, Integer> categoryCount;
 
-    public Coach(String name) {
+    public Coach(String name, ExcludedMenus excludedMenus) {
         nameValidate(name);
         this.name = name;
+        this.excludedMenus = excludedMenus;
         weeklyMenus = new LinkedList<>();
         categoryCount = new HashMap<>();
     }

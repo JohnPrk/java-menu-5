@@ -2,6 +2,7 @@ package menu;
 
 import menu.domain.coach.Coach;
 import menu.domain.coach.Coaches;
+import menu.domain.menu.ExcludedMenus;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -12,12 +13,12 @@ import static menu.domain.coach.error.CoachErrorMessage.TWO_CREWS_NEEDED_ERROR_M
 
 public class CoachesTest {
 
-    private final Coach john = new Coach("john");
-    private final Coach bill = new Coach("bill");
-    private final Coach song = new Coach("song");
-    private final Coach hoon = new Coach("hoon");
-    private final Coach shin = new Coach("shin");
-    private final Coach tom = new Coach("tom");
+    private final Coach john = new Coach("john", new ExcludedMenus(List.of("우동", "규동")));
+    private final Coach bill = new Coach("bill", new ExcludedMenus(List.of("미소시루")));
+    private final Coach song = new Coach("song", new ExcludedMenus(List.of("규동", "미소시루")));
+    private final Coach hoon = new Coach("hoon", new ExcludedMenus(List.of("우동")));
+    private final Coach shin = new Coach("shin", new ExcludedMenus(List.of()));
+    private final Coach tom = new Coach("tom", new ExcludedMenus(List.of("우동", "미소시루")));
 
     private final List<Coach> coaches = List.of(john, bill);
 

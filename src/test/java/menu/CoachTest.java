@@ -13,15 +13,17 @@ import static menu.domain.coach.error.CoachErrorMessage.NAME_RANGE_ERROR_MESSAGE
 
 public class CoachTest {
 
+    private final ExcludedMenus excludedMenus = new ExcludedMenus(List.of("우동", "규동"));
+
     @Test
     public void 정상_글자수를_가진_이름을_넣으면_코치_객체를_생성할_수_있다() {
-        Assertions.assertThat(new Coach("john")).isExactlyInstanceOf(Coach.class);
+        Assertions.assertThat(new Coach("john", excludedMenus)).isExactlyInstanceOf(Coach.class);
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"j", "richard"})
     public void 정상_글자수가_아닐경우_예외가_발생한다(String wrongName) {
-        Assertions.assertThatThrownBy(() -> new Coach(wrongName))
+        Assertions.assertThatThrownBy(() -> new Coach(wrongName, excludedMenus))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage(NAME_RANGE_ERROR_MESSAGE.getMessage());
     }
