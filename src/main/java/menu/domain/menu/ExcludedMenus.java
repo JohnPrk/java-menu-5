@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
-import static menu.domain.menu.error.MenuErrorMessage.*;
+import static menu.domain.menu.error.MenuErrorMessage.EXCLUDES_MENUS_RANGE_ERROR_MESSAGE;
+import static menu.domain.menu.error.MenuErrorMessage.NO_DUPLICATE_MENU_ERROR_MESSAGE;
 
 public class ExcludedMenus {
 
@@ -29,11 +30,7 @@ public class ExcludedMenus {
     }
 
     private void includeValidate(List<String> excludedMenus) {
-        boolean notExistsStatus = excludedMenus.stream()
-                .anyMatch(AllMenu::notExists);
-        if (notExistsStatus) {
-            throw new IllegalArgumentException(NOT_EXISTS_MENU_ERROR_MESSAGE.getMessage());
-        }
+        excludedMenus.forEach(AllMenu::validNotExists);
     }
 
     private void sizeValidate(List<String> excludedMenus) {

@@ -3,6 +3,8 @@ package menu.domain.menu;
 import java.util.Arrays;
 import java.util.List;
 
+import static menu.domain.menu.error.MenuErrorMessage.NOT_EXISTS_MENU_ERROR_MESSAGE;
+
 public class AllMenu {
 
     private static final List<String> MENU_LIST = Arrays.asList(
@@ -17,7 +19,9 @@ public class AllMenu {
 
     }
 
-    public static boolean notExists(String menu) {
-        return !MENU_LIST.contains(menu);
+    public static void validNotExists(String menu) {
+        if (!MENU_LIST.contains(menu)) {
+            throw new IllegalArgumentException(NOT_EXISTS_MENU_ERROR_MESSAGE.getMessage());
+        }
     }
 }

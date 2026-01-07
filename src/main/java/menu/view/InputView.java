@@ -15,7 +15,7 @@ public class InputView {
     public static List<String> inputCoachesName() {
         System.out.println(INPUT_COACHES_NAME_MESSAGE);
         String coachesName = Console.readLine();
-        InputValidator.separatorRegexValid(coachesName);
+        InputValidator.coachesValid(coachesName);
         System.out.println();
         return Arrays.stream(coachesName.split(",")).collect(Collectors.toList());
     }
@@ -23,7 +23,7 @@ public class InputView {
     public static ExcludedMenus inputExcludedMenus(String name) {
         System.out.printf(INPUT_EXCLUDED_MENUS_MESSAGE, name);
         String excludedMenus = Console.readLine();
-        InputValidator.separatorRegexValid(excludedMenus);
+        InputValidator.menusValid(excludedMenus);
         List<String> menuList = Arrays.stream(excludedMenus.split(",")).collect(Collectors.toList());
         System.out.println();
         return new ExcludedMenus(menuList);
