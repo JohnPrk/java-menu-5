@@ -2,8 +2,12 @@ package menu.controller;
 
 import menu.domain.coach.Coach;
 import menu.domain.coach.Coaches;
-import menu.domain.menu.*;
+import menu.domain.menu.AddMenuProcessor;
+import menu.domain.menu.CategorySelector;
+import menu.domain.menu.ExcludedMenus;
+import menu.domain.menu.MenuSelector;
 import menu.domain.menu.dto.RecommendationMenuResult;
+import menu.utils.Retry;
 import menu.view.InputView;
 import menu.view.OutputView;
 
@@ -29,10 +33,10 @@ public class Controller {
     }
 
     private Coaches getCoaches() {
-        List<String> nameList = InputView.inputCoachesName();
+        List<String> nameList = Retry.repeatUntilSuccess(InputView::inputCoachesName);
         List<Coach> coaches = nameList.stream()
                 .map(name -> {
-                    ExcludedMenus excludedMenus = InputView.inputExcludedMenus(name);
+                    ExcludedMenus excludedMenus = Retry.repeatUntilSuccess(() -> InputView.inputExcludedMenus(name));
                     return new Coach(name, excludedMenus);
                 }).collect(Collectors.toList());
         return new Coaches(coaches);
