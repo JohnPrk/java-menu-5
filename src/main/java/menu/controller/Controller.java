@@ -2,7 +2,8 @@ package menu.controller;
 
 import menu.domain.coach.Coach;
 import menu.domain.coach.Coaches;
-import menu.domain.menu.ExcludedMenus;
+import menu.domain.menu.*;
+import menu.domain.menu.dto.RecommendationMenuResult;
 import menu.view.InputView;
 import menu.view.OutputView;
 
@@ -11,9 +12,20 @@ import java.util.stream.Collectors;
 
 public class Controller {
 
-    public void run(List<String> allMenus) {
+    private final MenuSelector menuSelector;
+    private final CategorySelector categorySelector;
+
+    public Controller(MenuSelector menuSelector, CategorySelector categorySelector) {
+        this.menuSelector = menuSelector;
+        this.categorySelector = categorySelector;
+    }
+
+    public void run() {
         OutputView.printLunchMenuRecommendationMessage();
         Coaches coaches = getCoaches();
+        AddMenuProcessor addMenuProcessor = new AddMenuProcessor(coaches, menuSelector, categorySelector);
+        RecommendationMenuResult recommendationMenuResult = addMenuProcessor.process();
+        OutputView.printRecommendationMenu(recommendationMenuResult);
     }
 
     private Coaches getCoaches() {

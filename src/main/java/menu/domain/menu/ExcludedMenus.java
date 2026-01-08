@@ -38,4 +38,8 @@ public class ExcludedMenus {
             throw new IllegalArgumentException(EXCLUDES_MENUS_RANGE_ERROR_MESSAGE.getMessage());
         }
     }
+
+    public boolean contains(String menu) {
+        return this.menu.contains(menu);
+    }
 }

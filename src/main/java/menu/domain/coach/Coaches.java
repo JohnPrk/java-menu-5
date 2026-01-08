@@ -14,6 +14,10 @@ public class Coaches {
         this.coaches = coaches;
     }
 
+    public List<Coach> getCoaches() {
+        return coaches;
+    }
+
     private static void sizeValidate(List<Coach> coaches) {
         if (coaches.size() > 5) {
             throw new IllegalArgumentException(FIVE_CREWS_UPPER_LIMIT_ERROR_MESSAGE.getMessage());
