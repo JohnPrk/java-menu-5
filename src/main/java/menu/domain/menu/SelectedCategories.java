@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-public class CategoryList {
+public class SelectedCategories {
 
     private final List<String> categories;
     private final HashMap<String, Integer> categoryCount;
 
-    public CategoryList() {
+    public SelectedCategories() {
         this.categories = new ArrayList<>();
         this.categoryCount = new HashMap<>();
     }

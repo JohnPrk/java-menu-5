@@ -7,11 +7,11 @@ import java.util.List;
 public class RandomCategorySelector implements CategorySelector {
 
     public List<String> select() {
-        CategoryList categoryList = new CategoryList();
-        while (!categoryList.isGreaterThanFive()) {
+        SelectedCategories selectedCategories = new SelectedCategories();
+        while (!selectedCategories.isGreaterThanFive()) {
             int number = Randoms.pickNumberInRange(1, 5);
-            categoryList.add(MenuCategoryFinder.findCategory(number));
+            selectedCategories.add(MenuCategoryFinder.findCategory(number));
         }
-        return categoryList.getCategories();
+        return selectedCategories.getCategories();
     }
 }
